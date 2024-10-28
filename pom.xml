@@ -6,7 +6,7 @@
 
 <groupId>com.napier.mydevops</groupId>
 <artifactId>mydevops</artifactId>
-<version>1.0.0</version>
+<version>0.1</version>
 
 <properties>
     <maven.compiler.source>11</maven.compiler.source>

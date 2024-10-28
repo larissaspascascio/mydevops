@@ -1,4 +1,4 @@
 FROM openjdk:latest
-COPY ./target/mydevops-1.0.0.jar /tmp
+COPY ./target/mydevops-0.1.jar /tmp
 WORKDIR /tmp
-ENTRYPOINT ["java", "-jar", "mydevops-1.0.0.jar"]
+ENTRYPOINT ["java", "-jar", "mydevops-0.1.jar"]

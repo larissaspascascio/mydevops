@@ -15,9 +15,5 @@ jobs:
           distribution: 'adopt'
       - name: Package with Maven
         run: mvn package
-      - name: Build Docker Image
-        run: docker build -t mydevops:latest .
-      - name: Run image
-        run: docker run --name hello-world -d mydevops:latest
-      - name: View logs
-        run: docker logs hello-world
+      - name: Run docker compose
+        run: docker-compose up --abort-on-container-exit

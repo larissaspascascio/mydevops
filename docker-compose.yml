@@ -15,7 +15,5 @@ services:
       - DB_URL=jdbc:mysql://world:3306/world
       - DB_USER=root
       - DB_PASSWORD=example
-    volumes:
-      - db_data:/var/lib/mysql
-    restart: always
+
 

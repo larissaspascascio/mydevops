@@ -17,7 +17,7 @@ services:
       - DB_USER=root
       - DB_PASSWORD=example
     ports:
-      - "33060:3306"
+      - "3306:3306"
 
 
 

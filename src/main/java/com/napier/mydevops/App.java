@@ -1,19 +1,20 @@
 package com.napier.mydevops;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
-import java.sql.*;
+public class App {
+    public static void main(String[] args) {
+        // Retrieve environment variables for database URL, user, and password
+        String dbUrl = "jdbc:mysql://localhost:33060/world";
+        String dbUser = "root";
+        String dbPassword = "example";
 
-public class App
-{
-    public static void main(String[] args)
-    {
-        try
-        {
+        try {
             // Load Database driver
             Class.forName("com.mysql.cj.jdbc.Driver");
-        }
-        catch (ClassNotFoundException e)
-        {
+        } catch (ClassNotFoundException e) {
             System.out.println("Could not load SQL driver");
             System.exit(-1);
         }
@@ -21,41 +22,29 @@ public class App
         // Connection to the database
         Connection con = null;
         int retries = 5;
-        for (int i = 0; i < retries; ++i)
-        {
+        for (int i = 0; i < retries; ++i) {
             System.out.println("Connecting to database...");
-            try
-            {
+            try {
                 // Wait a bit for db to start
-                Thread.sleep(30000);
+                Thread.sleep(10000); // shorter delay between retries
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world", "root", "example");
+                con = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
                 System.out.println("Successfully connected");
-                // Wait a bit
-                Thread.sleep(90000);
                 // Exit for loop
                 break;
-            }
-            catch (SQLException sqle)
-            {
-                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
+            } catch (SQLException sqle) {
+                System.out.println("Failed to connect to database attempt " + i);
                 System.out.println(sqle.getMessage());
-            }
-            catch (InterruptedException ie)
-            {
+            } catch (InterruptedException ie) {
                 System.out.println("Thread interrupted? Should not happen.");
             }
         }
 
-        if (con != null)
-        {
-            try
-            {
+        if (con != null) {
+            try {
                 // Close connection
                 con.close();
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 System.out.println("Error closing connection to database");
             }
         }

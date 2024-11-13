@@ -1,23 +1,29 @@
-version: '3'
+version: '3.8'  # Update to a newer version to support healthcheck conditions
 services:
-  # Application Dockerfile is in same folder which is .
   app:
     build: .
     depends_on:
-        - db
+      db:
+        condition: service_healthy
+    environment:
+      - DB_URL=jdbc:mysql://db:3306/world
+      - DB_USER=root
+      - DB_PASSWORD=example
 
-      # db is is db folder
   db:
-        build: db/.
-        command: --default-authentication-plugin=mysql_native_password
-        environment:
-          - DB_URL=jdbc:mysql://world:3306/world
-          - DB_USER=root
-          - DB_PASSWORD=example
-        ports:
-          - "33060:3306"
-
-
+    build: db/.
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: world
+    ports:
+      - "33060:3306"
+    restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 
 

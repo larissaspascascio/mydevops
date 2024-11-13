@@ -1,4 +1,4 @@
-
+version: '3'
 services:
   # Application Dockerfile is in same folder which is .
   app:
@@ -6,18 +6,25 @@ services:
     depends_on:
         - db
 
-
-
-  # db is is db folder
+      # db is is db folder
   db:
-    build: db/.
-    command: --default-authentication-plugin=mysql_native_password
-    environment:
-      - DB_URL=jdbc:mysql://world:3306/world
-      - DB_USER=root
-      - DB_PASSWORD=example
-    ports:
-      - "3306:3306"
+        build: db/.
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+          - DB_URL=jdbc:mysql://world:3306/world
+          - DB_USER=root
+          - DB_PASSWORD=example
+        ports:
+          - "33060:3306"
+
+
+
+
+
+
+
+
+
 
 
 

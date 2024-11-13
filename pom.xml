@@ -39,8 +39,7 @@
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
-                    <appendAssemblyId>true</appendAssemblyId>
-                </configuration>
+                    </configuration>
                 <executions>
                     <execution>
                         <id>make-assembly</id>

@@ -21,5 +21,5 @@ jobs:
             sudo chmod +x /usr/local/bin/docker-compose
             docker-compose version
       - name: Run docker compose
-        run: docker-compose up --abort-on-container-exit
+        run: docker compose up --abort-on-container-exit
 

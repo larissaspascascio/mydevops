@@ -49,7 +49,7 @@
                     <finalName>mydevops</finalName>
                     <archive>
                         <manifest>
-                            <mainClass>com.napier.mydevops.main</mainClass>
+                            <mainClass>com.napier.mydevops.App</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
